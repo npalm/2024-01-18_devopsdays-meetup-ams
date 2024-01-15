@@ -1,4 +1,3 @@
-
 resource "github_actions_secret" "aws_account_id" {
   repository      = local.repository_name
   secret_name     = "AWS_ACCOUNT_ID"
@@ -24,7 +23,6 @@ resource "github_actions_environment_secret" "aws_secret" {
   secret_name     = "AWS_SECRET_ACCESS_KEY"
   plaintext_value = aws_iam_access_key.demo.secret
 }
-
 
 resource "github_repository_environment" "demo" {
   environment = "demo"

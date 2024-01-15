@@ -1,10 +1,10 @@
 # Talk - Passwordless: No More Passwords or Tokens! Enhancing CI/CD
 
-This repository has slides and demo resources for the talk [Going Passwordless: No More Passwords or Tokens! Enhancing CI/CD](https://www.meetup.com/devops-eindhoven/events/296096741/) at the [devopsdays Eindhoven Meetup](https://www.meetup.com/devops-eindhoven/).
+This repository has slides and demo resources for the talk [Going Passwordless: No More Passwords or Tokens! Enhancing CI/CD](https://www.meetup.com/devopsamsterdam/events/297138078/))at the [DevOps Amsterdam Meetup](https://www.meetup.com/devopsamsterdam/)).
 
 ## Resources
 
-- [Slides](https://npalm.github.io/2023-09-28_devopsdays-meetup-ehv/)
+- [Slides](https://npalm.github.io/2024-01-18_devopsdays-meetup-ams/)
 - [Blog](https://040code.github.io/tags/zero%20trust)
 
 ## Speaker

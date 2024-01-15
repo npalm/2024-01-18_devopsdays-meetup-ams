@@ -1,8 +1,9 @@
 locals {
-  user_name       = "demo"
-  bucket_name     = "20230928-devopsdays-meetup-ehv"
-  github_org      = "npalm"
-  repository_name = "2023-09-28_devopsdays-meetup-ehv"
+  user_name              = "demo"
+  bucket_name            = "20240118-devopsdays-meetup-ams"
+  github_org             = "npalm"
+  repository_name        = "2024-01-18_devopsdays-meetup-ams"
+  repository_environment = "demo"
 }
 
 data "aws_caller_identity" "current" {}

@@ -299,11 +299,11 @@ _backgroundColor: black
 # Resources
 
 resource "repo" "demo" {
-  url = "github.com/npalm/2023-09-28_devopsdays-meetup-ehv"
+  url = "github.com/npalm/2024-01-18_devopsdays-meetup-ams"
 }
 
 resource "website" "slides" {
-  url = "https://npalm.github.io/2023-09-28_devopsdays-meetup-ehv/"
+  url = "https://npalm.github.io/2024-01-18_devopsdays-meetup-ams/"
 }
 
 resource "contact" "niek" {

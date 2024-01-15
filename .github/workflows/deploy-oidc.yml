@@ -1,8 +1,5 @@
-name: Deploy to S3
+name: Deploy to S3 passwordless
 on:
-  push:
-    paths:
-      - .github/workflows/deploy.yml
   workflow_dispatch:
 
 jobs:
