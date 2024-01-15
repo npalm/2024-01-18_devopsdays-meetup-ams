@@ -1,0 +1,41 @@
+name: Pages Build and Deploy
+on:
+  push:
+    branches: [main]
+    paths: 
+      - 'assets/**'
+      - 'slides.md'
+      - '.github/workflows/pages.yml'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
+    runs-on: ubuntu-22.04
+    container: node:16-buster
+    steps:
+      - name: 🛎️ Checkout
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+
+      - name: 🔧 Install
+        run: |
+          yarn
+      - name: 🔧 Build pages
+        run: |
+          yarn run build-html
+      - name: 🔔 Installing required tools tools
+        if: github.event_name != 'pull_request'
+        run: |
+          apt-get update
+          apt-get install -y rsync
+      - name: 🚀 Deploy
+        if: github.event_name != 'pull_request'
+        uses: JamesIves/github-pages-deploy-action@f0e6e506b4860acdb0c7a8db5ffd3de19af76596 # v4.4.0
+        with:
+          branch: gh-pages
+          folder: build

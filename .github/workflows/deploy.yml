@@ -1,0 +1,41 @@
+name: Deploy to S3
+on:
+  push:
+    paths:
+      - .github/workflows/deploy.yml
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    environment: demo
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+
+      - name: Debug OIDC Claims
+        uses: github/actions-oidc-debugger@58fe0cc61207102542ebf9101114da5ac5a72582
+        with:
+          audience: 'https://github.com/github'        
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@010d0da01d0b5a38af31e9c3470dbfdabdecca3a # v4.0.1
+        with:
+            role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-actions/demo
+            role-session-name: gh-actions
+            aws-region: eu-west-1            
+
+      - name: Create ASCII Art
+        run: |
+          sudo apt-get update && sudo apt-get install -y figlet
+          echo "zero trust" | figlet > demo.txt
+
+      - name: Upload to S3
+        run: |
+          aws s3 cp demo.txt s3://${{ vars.AWS_BUCKET_NAME }}/demo-${{ github.job }}.txt
+
+      - name: Show content of file in s3
+        run: |
+          aws s3 cp s3://${{ vars.AWS_BUCKET_NAME }}/demo-${{ github.job }}.txt - | cat
