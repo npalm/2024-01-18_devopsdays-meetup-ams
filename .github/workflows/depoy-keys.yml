@@ -1,0 +1,33 @@
+name: Deploy to S3 with keys
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-with-keys:
+    runs-on: ubuntu-latest
+    environment: demo
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: Create ASCII Art
+        run: |
+          sudo apt-get update && sudo apt-get install -y figlet
+          echo "zero trust" | figlet > demo.txt
+
+      - name: Upload to S3
+        run: |
+          aws s3 cp demo.txt s3://${{ vars.AWS_BUCKET_NAME }}/demo-${{ github.job }}.txt
+
+      - name: Show content of file in s3
+        run: |
+          aws s3 cp s3://${{ vars.AWS_BUCKET_NAME }}/demo-${{ github.job }}.txt - | cat

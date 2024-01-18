@@ -1,0 +1,23 @@
+name: Deploy to S3 with self-hosted runner
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-with-self-hosted-runner:
+    environment: demo
+    runs-on: [self-hosted, linux, x64, demo]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Create ASCII Art
+        run: |
+          echo "zero trust" > demo.txt
+
+      - name: Upload to S3
+        run: |
+          aws s3 cp demo.txt s3://${{ vars.AWS_BUCKET_NAME }}/demo-${{ github.job }}.txt
+
+      - name: Show content of file in s3
+        run: |
+          aws s3 cp s3://${{ vars.AWS_BUCKET_NAME }}/demo-${{ github.job }}.txt - | cat
