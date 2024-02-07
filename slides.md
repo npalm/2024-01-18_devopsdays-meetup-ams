@@ -168,7 +168,7 @@ _color: green
 -->
 
 # <!-- fit --> 🤔 Can we avoid secrets? 
-<br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 ![bg 50%](assets/s3-with-node-policy.png)
@@ -207,7 +207,7 @@ _color: blue
 
 
 
-![bg 60%](assets/s3-with-keys.png)
+![bg 60%](assets/s3-with-oidc.png)
 
 
 
@@ -370,5 +370,3 @@ _color: purple
 
 
 ![bg](assets/start-finish.jpeg)
-
----
