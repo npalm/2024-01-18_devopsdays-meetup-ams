@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Debug OIDC Claims
-        uses: github/actions-oidc-debugger@58fe0cc61207102542ebf9101114da5ac5a72582
+        uses: github/actions-oidc-debugger@d0cee90ddb638aa8a410565a9db86054cbd0a113
         with:
           audience: 'https://github.com/github'        
 
