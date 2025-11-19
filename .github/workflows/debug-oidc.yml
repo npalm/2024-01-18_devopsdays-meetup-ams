@@ -12,6 +12,6 @@ jobs:
     name: A test of the oidc debugger
     steps:
       - name: Debug OIDC Claims
-        uses: steve-todorov/oidc-debugger-action@f9915fe9dc64133704c072eb59436373c23e9fdd
+        uses: steve-todorov/oidc-debugger-action@4d046d82b137c523e98a9d0069cb05b84032addb
         with:
           audience: '${{ github.server_url }}/${{ github.repository }}'
